@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { X, Star, MapPin, Clock, Phone, Globe, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,7 +30,7 @@ export const BusinessDetails: React.FC<BusinessDetailsProps> = ({ business, onCl
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
 
-    for (let i = 0; i < fullStars; i++) {a
+    for (let i = 0; i < fullStars; i++) {
       stars.push(
         <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
       );
@@ -90,7 +89,6 @@ export const BusinessDetails: React.FC<BusinessDetailsProps> = ({ business, onCl
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        {/* Header */}
         <div className="relative">
           <img
             src={business.image}
@@ -109,7 +107,6 @@ export const BusinessDetails: React.FC<BusinessDetailsProps> = ({ business, onCl
         </div>
 
         <div className="p-6">
-          {/* Business Info */}
           <div className="mb-6">
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -134,7 +131,6 @@ export const BusinessDetails: React.FC<BusinessDetailsProps> = ({ business, onCl
             </p>
           </div>
 
-          {/* Tabs */}
           <Tabs defaultValue="overview" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="overview">Overview</TabsTrigger>
