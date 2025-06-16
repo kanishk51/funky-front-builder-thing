@@ -19,9 +19,10 @@ interface Business {
 interface BusinessCardProps {
   business: Business;
   onReviewClick: () => void;
+  onViewDetails: () => void;
 }
 
-export const BusinessCard: React.FC<BusinessCardProps> = ({ business, onReviewClick }) => {
+export const BusinessCard: React.FC<BusinessCardProps> = ({ business, onReviewClick, onViewDetails }) => {
   const renderStars = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -91,6 +92,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business, onReviewCl
             variant="outline" 
             size="sm" 
             className="flex-1 hover:bg-gray-50"
+            onClick={onViewDetails}
           >
             View Details
           </Button>

@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { BusinessCard } from '../components/BusinessCard';
 import { ReviewForm } from '../components/ReviewForm';
+import { BusinessDetails } from '../components/BusinessDetails';
 import { Star, MapPin, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -69,6 +69,7 @@ const Index = () => {
   const [businesses, setBusinesses] = useState(sampleBusinesses);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [showBusinessDetails, setShowBusinessDetails] = useState(false);
   const [selectedBusiness, setSelectedBusiness] = useState(null);
 
   const categories = ['All', 'Restaurant', 'Service', 'Shop'];
@@ -94,6 +95,16 @@ const Index = () => {
     console.log('Review submitted:', review);
     setShowReviewForm(false);
     setSelectedBusiness(null);
+  };
+
+  const handleViewDetails = (business) => {
+    setSelectedBusiness(business);
+    setShowBusinessDetails(true);
+  };
+
+  const handleReviewClick = (business) => {
+    setSelectedBusiness(business);
+    setShowReviewForm(true);
   };
 
   return (
@@ -153,10 +164,8 @@ const Index = () => {
             >
               <BusinessCard
                 business={business}
-                onReviewClick={() => {
-                  setSelectedBusiness(business);
-                  setShowReviewForm(true);
-                }}
+                onReviewClick={() => handleReviewClick(business)}
+                onViewDetails={() => handleViewDetails(business)}
               />
             </div>
           ))}
@@ -204,6 +213,17 @@ const Index = () => {
             />
           </div>
         </div>
+      )}
+
+      {/* Business Details Modal */}
+      {showBusinessDetails && (
+        <BusinessDetails
+          business={selectedBusiness}
+          onClose={() => {
+            setShowBusinessDetails(false);
+            setSelectedBusiness(null);
+          }}
+        />
       )}
     </div>
   );
